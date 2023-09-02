@@ -1,5 +1,6 @@
-package com.example.springproject.validation;
+package com.example.springproject.utils;
 
+import com.example.springproject.validation.ValidationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
