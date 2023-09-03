@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/activity")
@@ -17,7 +18,7 @@ public class ActivityController {
     private ActivityService activityService;
 
     @PostMapping
-    public Activity createActivity(@Valid @RequestBody ActivityDTO activityDTO, BindingResult bindingResult) {
+    public CompletableFuture<Activity> createActivity(@Valid @RequestBody ActivityDTO activityDTO, BindingResult bindingResult) {
 
         ValidationUtility.validateDTO(bindingResult);
 
@@ -25,7 +26,12 @@ public class ActivityController {
     }
 
     @GetMapping
-    public List<Activity> getAllActivity() {
+    public CompletableFuture<List<Activity>> getAllActivity() {
         return activityService.getAllActivity();
+    }
+
+    @DeleteMapping("/{activityId}")
+    public CompletableFuture<String> deleteActivity(@PathVariable Integer activityId) {
+        return activityService.deleteActivity(activityId);
     }
 }
