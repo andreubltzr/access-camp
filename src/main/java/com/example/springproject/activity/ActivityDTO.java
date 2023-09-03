@@ -15,5 +15,5 @@ public class ActivityDTO {
     @NotEmpty(message = "Name is required.")
     private String name;
     @NotNull(message = "Difficulty is required.")
-    private Integer difficulty;
+    private int difficulty;
 }

@@ -19,9 +19,7 @@ public class ActivityController {
 
     @PostMapping
     public CompletableFuture<Activity> createActivity(@Valid @RequestBody ActivityDTO activityDTO, BindingResult bindingResult) {
-
         ValidationUtility.validateDTO(bindingResult);
-
         return activityService.createActivity(activityDTO);
     }
 
@@ -31,7 +29,7 @@ public class ActivityController {
     }
 
     @DeleteMapping("/{activityId}")
-    public CompletableFuture<String> deleteActivity(@PathVariable Integer activityId) {
+    public CompletableFuture<String> deleteActivity(@PathVariable int activityId) {
         return activityService.deleteActivity(activityId);
     }
 }

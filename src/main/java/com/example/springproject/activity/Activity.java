@@ -14,9 +14,9 @@ public class Activity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     private String name;
-    private Integer difficulty;
+    private int difficulty;
 
     public Activity(ActivityDTO activityDTO) {
         this.name = activityDTO.getName();

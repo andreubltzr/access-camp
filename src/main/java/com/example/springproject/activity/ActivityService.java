@@ -37,7 +37,7 @@ public class ActivityService {
     }
 
     @Async
-    public CompletableFuture<String> deleteActivity(Integer activityId) {
+    public CompletableFuture<String> deleteActivity(int activityId) {
         try {
         activityRepository.deleteById(activityId);
         return CompletableFuture.completedFuture("Activity deleted.");

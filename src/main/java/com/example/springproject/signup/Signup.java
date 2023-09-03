@@ -15,7 +15,7 @@ public class Signup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
 
     @ManyToOne
     @JoinColumn(name = "camper_id", referencedColumnName = "id")
@@ -25,5 +25,5 @@ public class Signup {
     @JoinColumn(name = "activity_id", referencedColumnName = "id")
     private Activity activity;
 
-    private Integer time;
+    private int time;
 }
