@@ -1,8 +1,6 @@
 package com.example.springproject.activity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,5 +18,8 @@ public class Activity {
     private String name;
     private Integer difficulty;
 
-
+    public Activity(ActivityDTO activityDTO) {
+        this.name = activityDTO.getName();
+        this.difficulty = activityDTO.getDifficulty();
+    }
 }

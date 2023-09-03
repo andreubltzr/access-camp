@@ -18,9 +18,7 @@ public class ActivityService {
     @Async
     public CompletableFuture<Activity> createActivity(ActivityDTO activityDTO) {
         try {
-            Activity activity = new Activity();
-            activity.setName(activityDTO.getName());
-            activity.setDifficulty(activityDTO.getDifficulty());
+            Activity activity = new Activity(activityDTO);
             activityRepository.save(activity);
             return CompletableFuture.completedFuture(activity);
         } catch (Exception e) {
@@ -30,14 +28,21 @@ public class ActivityService {
 
     @Async
     public CompletableFuture<List<Activity>> getAllActivity() {
+        try {
         List<Activity> activities = activityRepository.findAll();
         return CompletableFuture.completedFuture(activities);
+        } catch (Exception e) {
+            throw new RuntimeException("Error getting activities list.", e);
+        }
     }
 
     @Async
     public CompletableFuture<String> deleteActivity(Integer activityId) {
+        try {
         activityRepository.deleteById(activityId);
-
         return CompletableFuture.completedFuture("Activity deleted.");
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting activity", e);
+        }
     }
 }
