@@ -26,4 +26,14 @@ public class Signup {
     private Activity activity;
 
     private int time;
+
+    public Signup(Integer camperId, Integer activityId, Integer time) {
+        this.camper = new Camper();
+        this.camper.setId(camperId);
+
+        this.activity = new Activity();
+        this.activity.setId(activityId);
+
+        this.time = time;
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.springproject.camper.dto;
 
+import com.example.springproject.activity.Activity;
+import com.example.springproject.activity.ActivityDTO;
 import com.example.springproject.camper.Camper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +30,17 @@ public class CamperMapper {
 
     public List<CamperResponseDTO> mapToResponseDTOList(List<Camper> campers) {
         return campers.stream().map(this::mapToResponseDTO).collect(Collectors.toList());
+    }
+
+    public CamperActivityDTO mapToCamperActivityDTO(CamperDTO camperDTO, List<Activity> activityList) {
+        CamperActivityDTO camperActivityDTO = modelMapper.map(camperDTO, CamperActivityDTO.class);
+
+        List<ActivityDTO> activityDTOs = activityList.stream().map(activity -> modelMapper.map(activity,
+                        ActivityDTO.class)).collect(Collectors.toList());
+
+
+        camperActivityDTO.setActivityList(activityDTOs);
+
+        return camperActivityDTO;
     }
 }

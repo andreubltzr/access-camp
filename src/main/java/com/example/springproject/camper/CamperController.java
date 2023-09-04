@@ -1,5 +1,6 @@
 package com.example.springproject.camper;
 
+import com.example.springproject.camper.dto.CamperActivityDTO;
 import com.example.springproject.camper.dto.CamperDTO;
 import com.example.springproject.camper.dto.CamperResponseDTO;
 import com.example.springproject.utils.ValidationUtility;
@@ -28,4 +29,9 @@ public class CamperController {
     public CompletableFuture<List<CamperResponseDTO>> getAllCampers() {
         return camperService.getAllCampers();
     }
+
+/*    @GetMapping("/{id}")
+    public CompletableFuture<CamperActivityDTO> getCamperActivity(@PathVariable int id) {
+        return camperService.camperActivity(id);
+    }*/
 }
