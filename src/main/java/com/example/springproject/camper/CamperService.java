@@ -15,9 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 @Service
@@ -63,19 +61,20 @@ public class CamperService {
         }
     }
 
-    public CamperActivityDTO getCamperById(int id) {
-        List<Signup> signups = signupRepository.findByCamperId(id);
+    public CamperActivityDTO getCamperActivity(int id) {
+        Camper camper = camperRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Camper not found."));
 
-        List<Activity> activities = signups.stream().map(Signup::getActivity).toList();
+        List<Activity> activities = signupRepository.findByCamperId(id)
+                .stream()
+                .map(Signup::getActivity)
+                .toList();
 
-        Camper camper = camperRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
-
-        CamperActivityDTO camperActivityDTO = new CamperActivityDTO();
-        camperActivityDTO.setId(id);
-        camperActivityDTO.setName(camper.getName());
-        camperActivityDTO.setAge(camper.getAge());
-        camperActivityDTO.setActivityList(activities.stream().map(ActivityDTO::new).collect(Collectors.toList()));
-
-        return  camperActivityDTO;
+        return new CamperActivityDTO(
+                id,
+                camper.getName(),
+                camper.getAge(),
+                activities.stream().map(ActivityDTO::new).collect(Collectors.toList())
+        );
     }
 }

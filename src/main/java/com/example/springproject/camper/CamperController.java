@@ -33,6 +33,6 @@ public class CamperController {
     @GetMapping("/{id}")
     public CamperActivityDTO getCamperActivity(@PathVariable int id) {
 
-        return camperService.getCamperById(id);
+        return camperService.getCamperActivity(id);
     }
 }
