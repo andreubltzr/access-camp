@@ -18,22 +18,13 @@ public class Signup {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "camper_id", referencedColumnName = "id")
+    @JoinColumn(name = "camperId", referencedColumnName = "id")
     private Camper camper;
 
     @ManyToOne
-    @JoinColumn(name = "activity_id", referencedColumnName = "id")
+    @JoinColumn(name = "activityId", referencedColumnName = "id")
     private Activity activity;
 
     private int time;
 
-    public Signup(Integer camperId, Integer activityId, Integer time) {
-        this.camper = new Camper();
-        this.camper.setId(camperId);
-
-        this.activity = new Activity();
-        this.activity.setId(activityId);
-
-        this.time = time;
-    }
 }

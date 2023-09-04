@@ -18,7 +18,6 @@ public class SignupController {
 
     @PostMapping
     public SignupResponseDTO createSignup(@Valid @RequestBody SignupDTO signupDTO) {
-        Signup signup = signupService.createSignup(signupDTO);
-        return new SignupResponseDTO(signup);
+        return signupService.createSignup(signupDTO);
     }
 }
