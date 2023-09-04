@@ -34,7 +34,7 @@ public class ActivityControllerTest {
 
     @Test
     @DisplayName("getAllActivity should return the list of all activities")
-    public void getAllActivity() throws ExecutionException, InterruptedException {
+    public void getAllActivity() throws Exception {
         List<Activity> mockActivities = Arrays.asList(
                 new Activity(1, "Test Activity 1", 1),
                 new Activity(2, "Test Activity 2", 2)
@@ -65,10 +65,10 @@ public class ActivityControllerTest {
 
         CompletableFuture<Activity> res = activityController.createActivity(mockActivityDTO, mockBindingResult);
 
-        Activity activity = res.get();
+        Activity activityResponse = res.get();
 
-        assertNotNull(activity);
-        assertEquals(mockActivity, activity);
+        assertNotNull(activityResponse);
+        assertEquals(mockActivity, activityResponse);
     }
 
     @Test
