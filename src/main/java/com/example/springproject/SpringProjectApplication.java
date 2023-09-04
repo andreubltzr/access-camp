@@ -16,7 +16,7 @@ public class SpringProjectApplication {
 		SpringApplication.run(SpringProjectApplication.class, args);
 	}
 
-	@Bean
+/*	@Bean
 	public Executor taskExecutor() {
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 		executor.setCorePoolSize(2);
@@ -24,5 +24,5 @@ public class SpringProjectApplication {
 		executor.setQueueCapacity(500);
 		executor.initialize();
 		return executor;
-	}
+	}*/
 }

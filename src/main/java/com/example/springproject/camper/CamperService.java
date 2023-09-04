@@ -1,8 +1,8 @@
 package com.example.springproject.camper;
 
 import com.example.springproject.camper.dto.CamperDTO;
+import com.example.springproject.camper.dto.CamperMapper;
 import com.example.springproject.camper.dto.CamperResponseDTO;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -10,21 +10,26 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 @Service
 @Validated
 public class CamperService {
 
+    private final CamperRepository camperRepository;
+    private final CamperMapper camperMapper;
+
     @Autowired
-    private CamperRepository camperRepository;
+    public CamperService(CamperRepository camperRepository, CamperMapper camperMapper) {
+        this.camperRepository = camperRepository;
+        this.camperMapper = camperMapper;
+    }
 
     @Async
     public CompletableFuture<CamperResponseDTO> createCamper(CamperDTO camperDTO) {
         try {
-        Camper camper = new Camper(camperDTO);
+        Camper camper = camperMapper.mapToEntity(camperDTO);
         camperRepository.save(camper);
-        CamperResponseDTO camperResponseDTO = new CamperResponseDTO(camper);
+        CamperResponseDTO camperResponseDTO = camperMapper.mapToResponseDTO(camper);
         return CompletableFuture.completedFuture(camperResponseDTO);
         } catch (Exception e)  {
             throw new RuntimeException("Error creating new camper.", e);
@@ -36,10 +41,7 @@ public class CamperService {
         try {
             List<Camper> campers = camperRepository.findAll();
 
-            ModelMapper modelMapper = new ModelMapper();
-
-            List<CamperResponseDTO> camperResponseDTOList = campers.stream().map(camper -> modelMapper.map(camper,
-                    CamperResponseDTO.class)).collect(Collectors.toList());
+            List<CamperResponseDTO> camperResponseDTOList = camperMapper.mapToResponseDTOList(campers);
 
             return CompletableFuture.completedFuture(camperResponseDTOList);
         } catch (Exception e) {
