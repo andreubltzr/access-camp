@@ -2,7 +2,6 @@ package com.example.springproject.camper;
 
 import com.example.springproject.activity.Activity;
 import com.example.springproject.activity.ActivityDTO;
-import com.example.springproject.activity.ActivityRepository;
 import com.example.springproject.camper.dto.CamperActivityDTO;
 import com.example.springproject.camper.dto.CamperDTO;
 import com.example.springproject.camper.dto.CamperMapper;
