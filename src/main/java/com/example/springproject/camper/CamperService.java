@@ -24,15 +24,13 @@ public class CamperService {
 
     private final CamperRepository camperRepository;
     private final CamperMapper camperMapper;
-    private final ActivityRepository activityRepository;
     private final SignupRepository signupRepository;
 
     @Autowired
     public CamperService(CamperRepository camperRepository, CamperMapper camperMapper,
-                         ActivityRepository activityRepository, SignupRepository signupRepository) {
+                         SignupRepository signupRepository) {
         this.camperRepository = camperRepository;
         this.camperMapper = camperMapper;
-        this.activityRepository = activityRepository;
         this.signupRepository = signupRepository;
     }
 
