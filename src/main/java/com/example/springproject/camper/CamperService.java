@@ -1,10 +1,14 @@
 package com.example.springproject.camper;
 
 import com.example.springproject.activity.Activity;
+import com.example.springproject.activity.ActivityDTO;
+import com.example.springproject.activity.ActivityRepository;
 import com.example.springproject.camper.dto.CamperActivityDTO;
 import com.example.springproject.camper.dto.CamperDTO;
 import com.example.springproject.camper.dto.CamperMapper;
 import com.example.springproject.camper.dto.CamperResponseDTO;
+import com.example.springproject.signup.Signup;
+import com.example.springproject.signup.SignupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -13,6 +17,8 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 @Service
 @Validated
@@ -20,11 +26,16 @@ public class CamperService {
 
     private final CamperRepository camperRepository;
     private final CamperMapper camperMapper;
+    private final ActivityRepository activityRepository;
+    private final SignupRepository signupRepository;
 
     @Autowired
-    public CamperService(CamperRepository camperRepository, CamperMapper camperMapper) {
+    public CamperService(CamperRepository camperRepository, CamperMapper camperMapper,
+                         ActivityRepository activityRepository, SignupRepository signupRepository) {
         this.camperRepository = camperRepository;
         this.camperMapper = camperMapper;
+        this.activityRepository = activityRepository;
+        this.signupRepository = signupRepository;
     }
 
     @Async
@@ -52,19 +63,19 @@ public class CamperService {
         }
     }
 
-/*    @Async
-    public CompletableFuture<CamperActivityDTO> camperActivity(int id) {
-        try {
-            Optional<Camper> optionalCamper = camperRepository.findById(id);
+    public CamperActivityDTO getCamperById(int id) {
+        List<Signup> signups = signupRepository.findByCamperId(id);
 
-            if (optionalCamper.isPresent()) {
-               Camper camper = optionalCamper.get();
+        List<Activity> activities = signups.stream().map(Signup::getActivity).toList();
 
-               List<Activity> activityList = camper.ge
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Error getting camper activities", e);
-        }
-        return null;
-    }*/
+        Camper camper = camperRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+
+        CamperActivityDTO camperActivityDTO = new CamperActivityDTO();
+        camperActivityDTO.setId(id);
+        camperActivityDTO.setName(camper.getName());
+        camperActivityDTO.setAge(camper.getAge());
+        camperActivityDTO.setActivityList(activities.stream().map(ActivityDTO::new).collect(Collectors.toList()));
+
+        return  camperActivityDTO;
+    }
 }

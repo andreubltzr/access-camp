@@ -18,11 +18,11 @@ public class Signup {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "camperId", referencedColumnName = "id")
+    @JoinColumn(name = "camper_id", referencedColumnName = "id")
     private Camper camper;
 
     @ManyToOne
-    @JoinColumn(name = "activityId", referencedColumnName = "id")
+    @JoinColumn(name = "activity_id", referencedColumnName = "id")
     private Activity activity;
 
     private int time;

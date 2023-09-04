@@ -32,8 +32,8 @@ public class CamperMapper {
         return campers.stream().map(this::mapToResponseDTO).collect(Collectors.toList());
     }
 
-    public CamperActivityDTO mapToCamperActivityDTO(CamperDTO camperDTO, List<Activity> activityList) {
-        CamperActivityDTO camperActivityDTO = modelMapper.map(camperDTO, CamperActivityDTO.class);
+    public CamperActivityDTO mapToCamperActivityDTO(Camper camper, List<Activity> activityList) {
+        CamperActivityDTO camperActivityDTO = modelMapper.map(camper, CamperActivityDTO.class);
 
         List<ActivityDTO> activityDTOs = activityList.stream().map(activity -> modelMapper.map(activity,
                         ActivityDTO.class)).collect(Collectors.toList());

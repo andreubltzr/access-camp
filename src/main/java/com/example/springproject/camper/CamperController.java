@@ -30,8 +30,9 @@ public class CamperController {
         return camperService.getAllCampers();
     }
 
-/*    @GetMapping("/{id}")
-    public CompletableFuture<CamperActivityDTO> getCamperActivity(@PathVariable int id) {
-        return camperService.camperActivity(id);
-    }*/
+    @GetMapping("/{id}")
+    public CamperActivityDTO getCamperActivity(@PathVariable int id) {
+
+        return camperService.getCamperById(id);
+    }
 }
