@@ -1,5 +1,6 @@
 package com.example.springproject.activity;
 
+import com.example.springproject.activity.dto.ActivityDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

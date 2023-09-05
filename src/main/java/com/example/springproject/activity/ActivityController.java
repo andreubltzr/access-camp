@@ -1,5 +1,6 @@
 package com.example.springproject.activity;
 
+import com.example.springproject.activity.dto.ActivityDTO;
 import com.example.springproject.utils.ValidationUtility;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

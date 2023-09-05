@@ -1,6 +1,6 @@
 package com.example.springproject.camper.dto;
 
-import com.example.springproject.activity.ActivityDTO;
+import com.example.springproject.activity.dto.ActivityDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

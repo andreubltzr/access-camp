@@ -1,5 +1,6 @@
 package com.example.springproject.activity;
 
+import com.example.springproject.activity.dto.ActivityDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;

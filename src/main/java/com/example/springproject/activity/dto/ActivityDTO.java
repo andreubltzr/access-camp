@@ -1,6 +1,7 @@
-package com.example.springproject.activity;
+package com.example.springproject.activity.dto;
 
 
+import com.example.springproject.activity.Activity;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

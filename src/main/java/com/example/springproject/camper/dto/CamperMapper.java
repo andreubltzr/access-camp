@@ -1,7 +1,7 @@
 package com.example.springproject.camper.dto;
 
 import com.example.springproject.activity.Activity;
-import com.example.springproject.activity.ActivityDTO;
+import com.example.springproject.activity.dto.ActivityDTO;
 import com.example.springproject.camper.Camper;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
